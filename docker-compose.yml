@@ -18,6 +18,7 @@ services:
       - /dev/nvidiactl:/dev/nvidiactl
       # for the homework
       - ./hw_1/src:/root/catkin_ws/src 
+      - .vscode:/root/catkin_ws/.vscode
     devices:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/nvidia-uvm:/dev/nvidia-uvm
