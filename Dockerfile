@@ -43,9 +43,9 @@ RUN apt-get install -y libeigen3-dev libpcl-dev ros-noetic-navigation
 RUN chsh -s /bin/zsh
 
 # Set up environment
-RUN echo "source /opt/ros/noetic/setup.zsh" >> ~/.zshrc
+RUN echo "source /opt/ros/noetic/setup.zsh" >> /root/.zshrc
 RUN echo 'if [ -f /root/catkin_ws/devel/setup.zsh ]; then\n  source /root/catkin_ws/devel/setup.zsh\nfi' >> /root/.zshrc
-RUN /bin/zsh -c "source ~/.zshrc"
+RUN /bin/zsh -c "source /root/.zshrc"
 
 # Create a working directory
 WORKDIR /root
