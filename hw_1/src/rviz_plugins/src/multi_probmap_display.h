@@ -44,71 +44,70 @@
 
 namespace Ogre
 {
-class ManualObject;
+  class ManualObject;
 }
 
 namespace rviz
 {
 
-class FloatProperty;
-class IntProperty;
-class Property;
-class QuaternionProperty;
-class RosTopicProperty;
-class VectorProperty;
+  class FloatProperty;
+  class IntProperty;
+  class Property;
+  class QuaternionProperty;
+  class RosTopicProperty;
+  class VectorProperty;
 
-/**
- * \class MultiProbMapDisplay
- * \brief Displays a map along the XY plane.
- */
-class MultiProbMapDisplay: public Display
-{
-Q_OBJECT
-public:
-  MultiProbMapDisplay();
-  virtual ~MultiProbMapDisplay();
+  /**
+   * \class MultiProbMapDisplay
+   * \brief Displays a map along the XY plane.
+   */
+  class MultiProbMapDisplay : public Display
+  {
+    Q_OBJECT
+  public:
+    MultiProbMapDisplay();
+    virtual ~MultiProbMapDisplay();
 
-  // Overrides from Display
-  virtual void onInitialize();
-  virtual void reset();
-  virtual void update( float wall_dt, float ros_dt );
+    // Overrides from Display
+    virtual void onInitialize();
+    virtual void reset();
+    virtual void update(float wall_dt, float ros_dt);
 
-protected Q_SLOTS:
-  void updateTopic();
-  void updateDrawUnder();
+  protected Q_SLOTS:
+    void updateTopic();
+    void updateDrawUnder();
 
+  protected:
+    // overrides from Display
+    virtual void onEnable();
+    virtual void onDisable();
 
-protected:
-  // overrides from Display
-  virtual void onEnable();
-  virtual void onDisable();
+    virtual void subscribe();
+    virtual void unsubscribe();
 
-  virtual void subscribe();
-  virtual void unsubscribe();
+    void incomingMap(const multi_map_server::MultiOccupancyGrid::ConstPtr &msg);
 
-  void incomingMap(const multi_map_server::MultiOccupancyGrid::ConstPtr& msg);
+    void clear();
 
-  void clear();
-  
-  std::vector<Ogre::ManualObject*> manual_object_;
-  std::vector<Ogre::TexturePtr> texture_;
-  std::vector<Ogre::MaterialPtr> material_;  
-  
-  bool loaded_;
+    std::vector<Ogre::ManualObject *> manual_object_;
+    std::vector<Ogre::TexturePtr> texture_;
+    std::vector<Ogre::MaterialPtr> material_;
 
-  std::string topic_;
+    bool loaded_;
 
-  ros::Subscriber map_sub_;
+    std::string topic_;
 
-  RosTopicProperty* topic_property_;
-  Property* draw_under_property_;
+    ros::Subscriber map_sub_;
 
-  multi_map_server::MultiOccupancyGrid::ConstPtr updated_map_;
-  multi_map_server::MultiOccupancyGrid::ConstPtr current_map_;
-  boost::mutex mutex_;
-  bool new_map_;
-};
+    RosTopicProperty *topic_property_;
+    Property *draw_under_property_;
+
+    multi_map_server::MultiOccupancyGrid::ConstPtr updated_map_;
+    multi_map_server::MultiOccupancyGrid::ConstPtr current_map_;
+    boost::mutex mutex_;
+    bool new_map_;
+  };
 
 } // namespace rviz
 
- #endif
+#endif
