@@ -25,7 +25,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: AllMap
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -244,5 +244,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1680
-  X: 0
-  Y: 535
+  X: 93
+  Y: 605

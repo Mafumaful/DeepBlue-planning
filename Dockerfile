@@ -35,7 +35,7 @@ RUN git clone https://github.com/ohmyzsh/ohmyzsh.git /root/.oh-my-zsh && \
 #################### Project configuration ####################
 
 # install eigen, pcl, navigation ros-noetic-rviz-visual-tools ros-noetic-rviz-plugin-tutorials
-RUN apt-get install -y libeigen3-dev libpcl-dev ros-noetic-navigation ros-noetic-rviz-visual-tools ros-noetic-rviz-plugin-tutorials
+RUN apt-get install -y libeigen3-dev libpcl-dev ros-noetic-navigation
 
 ################# End of project configuration #################
 
@@ -44,6 +44,7 @@ RUN chsh -s /bin/zsh
 
 # Set up environment
 RUN echo "source /opt/ros/noetic/setup.zsh" >> ~/.zshrc
+RUN echo 'if [ -f /root/catkin_ws/devel/setup.zsh ]; then\n  source /root/catkin_ws/devel/setup.zsh\nfi' >> /root/.zshrc
 RUN /bin/zsh -c "source ~/.zshrc"
 
 # Create a working directory
