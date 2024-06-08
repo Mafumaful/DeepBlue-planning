@@ -4,6 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /AllMap1
         - /AllMap1/Autocompute Value Bounds1
         - /visitedNodes1/Namespaces1
         - /gridPath1/Namespaces1
@@ -23,7 +24,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 0
-    SyncSource: ""
+    SyncSource: AllMap
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -61,8 +62,8 @@ Visualization Manager:
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
-        Max Value: 1.899999976158142
-        Min Value: 0.10000000149011612
+        Max Value: 4.773809432983398
+        Min Value: 0.00046365027083083987
         Value: true
       Axis: Z
       Channel Name: intensity
@@ -81,7 +82,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.20000000298023224
       Style: Boxes
-      Topic: /demo_node/grid_map_vis
+      Topic: /random_complex/global_map
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -120,7 +121,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 9.746122360229492
+      Distance: 17.74948501586914
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -136,9 +137,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.5697963237762451
+      Pitch: 1.0347968339920044
       Target Frame: <Fixed Frame>
-      Yaw: 3.7743639945983887
+      Yaw: 3.819364547729492
     Saved:
       - Class: rviz/Orbit
         Distance: 79.24484252929688
@@ -219,4 +220,4 @@ Window Geometry:
     collapsed: false
   Width: 1387
   X: 2061
-  Y: 710
+  Y: 636
