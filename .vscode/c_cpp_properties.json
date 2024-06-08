@@ -8,15 +8,13 @@
       "includePath": [
         "/opt/ros/noetic/include/**",
         "/root/catkin_ws/src/grid_path_searcher/include/**",
-        "/root/catkin_ws/src/rviz_plugins/src/**",
-        "/root/catkin_ws/src/waypoint_generator/src/**",
         "/usr/include/**"
       ],
       "name": "ROS",
       "intelliSenseMode": "gcc-x64",
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "gnu11",
-      "cppStandard": "c++17"
+      "cppStandard": "c++14"
     }
   ],
   "version": 4

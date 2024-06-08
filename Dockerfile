@@ -35,7 +35,7 @@ RUN git clone https://github.com/ohmyzsh/ohmyzsh.git /root/.oh-my-zsh && \
 #################### Project configuration ####################
 
 # install eigen, pcl, navigation ros-noetic-rviz-visual-tools ros-noetic-rviz-plugin-tutorials
-RUN apt-get install -y libeigen3-dev libpcl-dev ros-noetic-navigation
+RUN apt-get install -y libeigen3-dev libpcl-dev ros-noetic-navigation gdb
 
 ################# End of project configuration #################
 
