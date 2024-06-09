@@ -174,11 +174,10 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
     };
 
     // define the heuristic function
-    double distance = 0.0;
+    double distance = 0.0, fScore = 0.0;
     double dx, dy, dz, sum;
 
     Function heufunc = DIAGNAL;
-    // ROS_INFO("*******************************STEP 1*******************************"); // for debug
     switch (heufunc)
     {
     case MANHATTAN:
@@ -201,7 +200,17 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
         distance = 0.0;
     }
 
-    return distance;
+    // update f score
+    /**
+     * f score has two part:
+     * 1. g score -> alpha
+     * 2. h score -> epsilon
+     * each part has a coefficient which indicates the greedy degree
+     */
+    double alpha = 1, epsilon = 1;
+    fScore = alpha * node1->gScore + epsilon * distance;
+
+    return fScore;
     /******************************* end *******************************/
 }
 
@@ -242,6 +251,10 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
     *
     *
     */
+
+    /******************************* start *******************************/
+
+    /******************************* end *******************************/
 
     vector<GridNodePtr> neighborPtrSets;
     vector<double> edgeCostSets;
