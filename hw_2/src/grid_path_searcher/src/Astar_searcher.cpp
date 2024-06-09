@@ -252,13 +252,14 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
     *
     */
 
-    /******************************* start *******************************/
-
-    /******************************* end *******************************/
-
     vector<GridNodePtr> neighborPtrSets;
     vector<double> edgeCostSets;
 
+    /******************************* start *******************************/
+    std::multimap<double, GridNodePtr> closeSet;
+    closeSet.clear();
+
+    /******************************* end *******************************/
     // this is the main loop
     while (!openSet.empty())
     {
@@ -273,6 +274,11 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
         *
         *
         */
+
+        /******************************* start *******************************/
+        openSet.erase(openSet.begin());
+
+        /******************************* end *******************************/
 
         // if the current node is the goal
         if (currentPtr->index == goalIdx)
@@ -292,6 +298,9 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
         please write your code below
         *
         */
+        /******************************* start *******************************/
+
+        /******************************* end *******************************/
         for (int i = 0; i < (int)neighborPtrSets.size(); i++)
         {
             /*
@@ -314,6 +323,9 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
                 please write your code below
                 *
                 */
+                /******************************* start *******************************/
+
+                /******************************* end *******************************/
                 continue;
             }
             else if (0)
@@ -325,6 +337,9 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
                 please write your code below
                 *
                 */
+                /******************************* start *******************************/
+
+                /******************************* end *******************************/
                 continue;
             }
             else
@@ -334,6 +349,9 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
                 please write your code below
                 *
                 */
+                /******************************* start *******************************/
+
+                /******************************* end *******************************/
                 continue;
             }
         }
@@ -355,7 +373,9 @@ vector<Vector3d> AstarPathFinder::getPath()
     please write your code below
     *
     */
+    /******************************* start *******************************/
 
+    /******************************* end *******************************/
     for (auto ptr : gridPath)
         path.push_back(ptr->coord);
 
