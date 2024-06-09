@@ -22,7 +22,7 @@ RUN rosdep init && rosdep update
 # Install additional packages for RViz and Gazebo
 RUN apt-get install -y ros-noetic-rviz ros-noetic-gazebo-ros
 
-# Install X server packagesgi
+# Install X server packagesg
 RUN apt-get install -y x11-apps mesa-utils zsh git vim
 
 # Install oh-my-zsh
