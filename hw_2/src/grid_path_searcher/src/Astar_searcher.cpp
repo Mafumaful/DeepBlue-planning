@@ -211,15 +211,14 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
     {
         MANHATTAN,
         EUCLIDEAN,
-        DIAGNAL,
-        DIJKSTRA
+        DIAGNAL
     };
 
     // define the heuristic function
     double distance = 0.0, fScore = 0.0;
     double dx, dy, dz, sum;
 
-    Function heufunc = DIAGNAL;
+    Function heufunc = EUCLIDEAN;
     switch (heufunc)
     {
     case MANHATTAN:
@@ -249,7 +248,7 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
      * 2. h score -> epsilon
      * each part has a coefficient which indicates the greedy degree
      */
-    double alpha = 1, epsilon = 1;
+    double alpha = 0.5, epsilon = 1;
     fScore = alpha * node1->gScore + epsilon * distance;
 
     return fScore;
@@ -384,7 +383,7 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
                 /******************************* end *******************************/
                 continue;
             }
-            else if (neighborPtr->id == 1 and neighborPtr->gScore > currentPtr->gScore + edgeCostSets[i])
+            else if (neighborPtr->id == 1 && neighborPtr->gScore > currentPtr->gScore + edgeCostSets[i])
             { // this node is in open set and need to judge if it needs to update, the "0" should be deleted when you are coding
                 /*
                 *
@@ -438,8 +437,6 @@ vector<Vector3d> AstarPathFinder::getPath()
         path.push_back(ptr->coord);
         gridPath.push_back(ptr);
         // std::cout << "path" << ptr->coord << std::endl;
-        std::cout << "terminal: " << terminatePtr->index.transpose() << std::endl;
-        std::cout << "index: " << ptr->index.transpose() << std::endl;
         ptr = ptr->cameFrom;
     }
 
