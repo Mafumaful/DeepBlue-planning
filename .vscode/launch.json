@@ -9,6 +9,8 @@
             "request": "launch",
             "target": "/root/catkin_ws/src/grid_path_searcher/launch/demo.launch",
             "launch": [
+                // "waypoint_generator",
+                // "random_complex",
                 "rviz",
                 // "gz",
                 // "gzclient",
