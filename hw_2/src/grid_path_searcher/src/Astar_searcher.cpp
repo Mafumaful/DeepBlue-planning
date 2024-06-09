@@ -146,6 +146,14 @@ inline void AstarPathFinder::AstarGetSucc(GridNodePtr currentPtr, vector<GridNod
     *
     *
     */
+    /******************************* start *******************************/
+    id_x = currentPtr->index[0];
+    id_y = currentPtr->index[1];
+    id_z = currentPtr->index[2];
+
+    // up down, left right, forward back
+
+    /******************************* end *******************************/
 }
 
 double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
@@ -256,8 +264,7 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
     vector<double> edgeCostSets;
 
     /******************************* start *******************************/
-    std::multimap<double, GridNodePtr> closeSet;
-    closeSet.clear();
+    GridNodePtr popedPtr = NULL;
 
     /******************************* end *******************************/
     // this is the main loop
@@ -276,8 +283,7 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
         */
 
         /******************************* start *******************************/
-        openSet.erase(openSet.begin());
-
+        currentPtr = openSet.begin()->second;
         /******************************* end *******************************/
 
         // if the current node is the goal
@@ -314,6 +320,12 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
             neighborPtrSets[i]->id = 1 : unexpanded, equal to this node is in open set
             *
             */
+
+            /******************************* start *******************************/
+            // please note in every GrideNode, there is a nodeMapIt function, I think I have to make full use of that
+            neighborPtr = neighborPtrSets[i];
+            /******************************* end *******************************/
+
             if (neighborPtr->id == 0)
             { // discover a new node, which is not in the closed set and open set
                 /*
@@ -324,11 +336,15 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
                 *
                 */
                 /******************************* start *******************************/
-
+                neighborPtr->gScore = currentPtr->gScore + edgeCostSets[i];
+                neighborPtr->fScore = getHeu(neighborPtr, endPtr);
+                // insert it into the priority queue
+                neighborPtr.id = 1;
+                openSet.insert(std::make_pair(neighborPtr->fScore, neighborPtr));
                 /******************************* end *******************************/
                 continue;
             }
-            else if (0)
+            else if (neighborPtr->gScore > currentPtr->gScore + edgeCostSets[i])
             { // this node is in open set and need to judge if it needs to update, the "0" should be deleted when you are coding
                 /*
                 *
@@ -338,7 +354,7 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
                 *
                 */
                 /******************************* start *******************************/
-
+                neighborPtr->gScore = currentPtr + edgeCostSets[i];
                 /******************************* end *******************************/
                 continue;
             }

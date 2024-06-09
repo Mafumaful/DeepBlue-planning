@@ -20,7 +20,7 @@ struct GridNode
 
   double gScore, fScore;
   GridNodePtr cameFrom;
-  std::multimap<double, GridNodePtr>::iterator nodeMapIt;
+  std::multimap<double, GridNodePtr>::iterator nodeMapIt; // this multimap is used for store the fScore
 
   GridNode(Eigen::Vector3i _index, Eigen::Vector3d _coord)
   {
