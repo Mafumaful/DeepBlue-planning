@@ -158,7 +158,6 @@ inline void AstarPathFinder::AstarGetSucc(GridNodePtr currentPtr, vector<GridNod
     id_zSets = {-1, 0, 1};
 
     Vector3i neighbour_idx(3);
-    Vector3d neighbour_pt(3);
 
     for (int dx : id_xSets)
     {
