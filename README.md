@@ -17,7 +17,9 @@ docker compose down
 
 To access the container
 
-right click on the docker and attach vscode
+right click on the docker and attach vscode, after build the container, please reattach the vscode again to make sure that you can debug the code.
+
+```bash
 
 To debug the code:
 

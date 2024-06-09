@@ -83,7 +83,7 @@ vector<Vector3d> AstarPathFinder::getVisitedNodes()
                     visited_nodes.push_back(GridNodeMap[i][j][k]->coord);
             }
 
-    ROS_WARN("visited_nodes size : %d", visited_nodes.size());
+    ROS_WARN("visited_nodes size : %zu", visited_nodes.size());
     return visited_nodes;
 }
 
@@ -163,7 +163,46 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
     *
     */
 
-    return 0;
+    /******************************* start *******************************/
+
+    enum Function
+    {
+        MANHATTAN,
+        EUCLIDEAN,
+        DIAGNAL,
+        DIJKSTRA
+    };
+
+    // define the heuristic function
+    double distance = 0.0;
+    double dx, dy, dz, sum;
+
+    Function heufunc = DIAGNAL;
+    // ROS_INFO("*******************************STEP 1*******************************"); // for debug
+    switch (heufunc)
+    {
+    case MANHATTAN:
+        distance = (node1->coord - node2->coord).cwiseAbs().sum();
+        break;
+
+    case EUCLIDEAN:
+        distance = (node1->coord - node2->coord).norm();
+        break;
+
+    case DIAGNAL:
+        dx = abs(node1->coord[0] - node2->coord[0]);
+        dy = abs(node1->coord[1] - node2->coord[1]);
+        dz = abs(node1->coord[2] - node2->coord[2]);
+        sum = dx + dy + dz;
+        distance = sum + (sqrt(3) - 3) * min(min(dx, dy), dz) + (sqrt(2) - 2) * (sum - min(min(dx, dy), dz) - max(max(dx, dy), dz));
+        break;
+
+    default:
+        distance = 0.0;
+    }
+
+    return distance;
+    /******************************* end *******************************/
 }
 
 void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
@@ -203,6 +242,7 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
     *
     *
     */
+
     vector<GridNodePtr> neighborPtrSets;
     vector<double> edgeCostSets;
 

@@ -1,0 +1,25 @@
+// build with debug ros1
+
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-debug",
+            "type": "shell",
+            "command": "catkin_make",
+            "args": [
+                "install",
+                "-DCMAKE_CXX_FLAGS_RELEASE=-O0",
+                "-DCMAKE_C_FLAGS_RELEASE=-O0",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$catkin-gcc"
+            ]
+        }
+    ]
+}
