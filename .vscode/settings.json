@@ -2,10 +2,14 @@
   "python.autoComplete.extraPaths": [
     "/opt/ros/noetic/lib/python3/dist-packages"
   ],
-  "python.analysis.extraPaths": [
-    "/opt/ros/noetic/lib/python3/dist-packages"
-  ],
+  "python.analysis.extraPaths": ["/opt/ros/noetic/lib/python3/dist-packages"],
   "cmake.configureOnOpen": false,
   "ros.distro": "noetic",
   "C_Cpp.errorSquiggles": "disabled",
+  "files.associations": {
+    "*.m": "matlab",
+    "*.yml": "yaml",
+    "cmath": "cpp",
+    "complex": "cpp"
+  }
 }

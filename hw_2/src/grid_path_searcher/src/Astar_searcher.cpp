@@ -180,8 +180,8 @@ inline void AstarPathFinder::AstarGetSucc(GridNodePtr currentPtr, vector<GridNod
                 // if the condition above is satisfied, push it into the neighbourPtrSets, and edgeCostSets
                 // update the camefrom node, update the idx
                 GridNodePtr gridPtr = GridNodeMap[newx][newy][newz];
-
-                edgeCostSets.push_back(sqrt(dx * dx + dy * dy + dz * dz));
+                double cost = sqrt(dx * dx + dy * dy + dz * dz);
+                edgeCostSets.push_back(cost);
                 neighborPtrSets.push_back(gridPtr);
             }
         }

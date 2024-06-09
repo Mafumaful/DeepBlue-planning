@@ -10,9 +10,9 @@
             "target": "/root/catkin_ws/src/grid_path_searcher/launch/demo.launch",
             "launch": [
                 "rviz",
-                "gz",
-                "gzclient",
-                "gzserver"
+                // "gz",
+                // "gzclient",
+                // "gzserver"
             ],
             "type": "ros",
         }
