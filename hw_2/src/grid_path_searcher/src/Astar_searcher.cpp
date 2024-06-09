@@ -217,21 +217,21 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
     double distance = 0.0, fScore = 0.0;
     double dx, dy, dz, sum;
 
-    Function heufunc = EUCLIDEAN;
+    Function heufunc = DIAGNAL;
     switch (heufunc)
     {
     case MANHATTAN:
-        distance = (node1->coord - node2->coord).cwiseAbs().sum();
+        distance = (double)((node1->index - node2->index).cwiseAbs().sum());
         break;
 
     case EUCLIDEAN:
-        distance = (node1->coord - node2->coord).norm();
+        distance = (double)((node1->index - node2->index).norm());
         break;
 
     case DIAGNAL:
-        dx = abs(node1->coord[0] - node2->coord[0]);
-        dy = abs(node1->coord[1] - node2->coord[1]);
-        dz = abs(node1->coord[2] - node2->coord[2]);
+        dx = (double)(abs(node1->index[0] - node2->index[0]));
+        dy = (double)(abs(node1->index[1] - node2->index[1]));
+        dz = (double)(abs(node1->index[2] - node2->index[2]));
         sum = dx + dy + dz;
         distance = sum + (sqrt(3) - 3) * min(min(dx, dy), dz) + (sqrt(2) - 2) * (sum - min(min(dx, dy), dz) - max(max(dx, dy), dz));
         break;
@@ -247,7 +247,7 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
      * 2. h score -> epsilon
      * each part has a coefficient which indicates the greedy degree
      */
-    double alpha = 0.5, epsilon = 1;
+    double alpha = 1, epsilon = 1;
     fScore = alpha * node1->gScore + epsilon * distance;
 
     return fScore;
