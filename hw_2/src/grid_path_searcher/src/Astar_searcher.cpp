@@ -291,6 +291,11 @@ void AstarPathFinder::AstarGraphSearch(Vector3d start_pt, Vector3d end_pt)
     *
     *
     */
+    if (isOccupied(endPtr->index))
+    {
+        ROS_WARN("The goal point is in the obstacle, please reset the goal point");
+        return;
+    }
 
     vector<GridNodePtr> neighborPtrSets;
     vector<double> edgeCostSets;
