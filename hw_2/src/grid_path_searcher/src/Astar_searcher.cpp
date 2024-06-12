@@ -210,14 +210,14 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
     {
         MANHATTAN,
         EUCLIDEAN,
-        DIAGNAL
+        DIAGONAL
     };
 
     // define the heuristic function
     double distance = 0.0, fScore = 0.0;
-    double dx, dy, dz, sum;
+    double dx, dy, dz;
+    Function heufunc = DIAGONAL;
 
-    Function heufunc = DIAGNAL;
     switch (heufunc)
     {
     case MANHATTAN:
@@ -228,13 +228,24 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
         distance = (double)((node1->index - node2->index).norm());
         break;
 
-    case DIAGNAL:
+    case DIAGONAL:
+    {
         dx = (double)(abs(node1->index[0] - node2->index[0]));
         dy = (double)(abs(node1->index[1] - node2->index[1]));
         dz = (double)(abs(node1->index[2] - node2->index[2]));
-        sum = dx + dy + dz;
-        distance = sum + (sqrt(3) - 3) * min(min(dx, dy), dz) + (sqrt(2) - 2) * (sum - min(min(dx, dy), dz) - max(max(dx, dy), dz));
+
+        // Calculate the minimum distance among dx, dy, dz for 3D diagonal movement
+        double min_xyz = std::min({dx, dy, dz});
+
+        // Remove the minimum distance for 2D diagonal calculation
+        double max_xy = std::max({dx, dy});
+        double mid_xy = dx + dy - min_xyz - max_xy;
+
+        // Calculate the distance using 3D diagonal movement
+        distance = min_xyz * sqrt(3) + (mid_xy - min_xyz) * sqrt(2) + (dx + dy + dz - min_xyz - mid_xy);
+
         break;
+    }
 
     default:
         distance = 0.0;
