@@ -236,13 +236,11 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
 
         // Calculate the minimum distance among dx, dy, dz for 3D diagonal movement
         double min_xyz = std::min({dx, dy, dz});
-
-        // Remove the minimum distance for 2D diagonal calculation
-        double max_xy = std::max({dx, dy});
-        double mid_xy = dx + dy - min_xyz - max_xy;
+        double max_xyz = std::max({dx, dy, dz});
+        double mid_xyz = dx + dy + dz - min_xyz - max_xyz;
 
         // Calculate the distance using 3D diagonal movement
-        distance = min_xyz * sqrt(3) + (mid_xy - min_xyz) * sqrt(2) + (dx + dy + dz - min_xyz - mid_xy);
+        distance = max_xyz + (sqrt(3) - sqrt(2)) * min_xyz + (sqrt(2) - 1) * mid_xyz;
 
         break;
     }
