@@ -1,7 +1,11 @@
 services:
-  ros:
-    build: .
-    container_name: ros_noetic
+  ros-noetic:
+    image: mafumaful/pathplanning:v1.0
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      cache_from:
+        - mafumaful/pathplanning:v1.0
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
