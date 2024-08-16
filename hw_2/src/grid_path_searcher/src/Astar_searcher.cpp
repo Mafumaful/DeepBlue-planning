@@ -216,7 +216,7 @@ double AstarPathFinder::getHeu(GridNodePtr node1, GridNodePtr node2)
     // define the heuristic function
     double distance = 0.0, fScore = 0.0;
     double dx, dy, dz;
-    Function heufunc = DIAGONAL;
+    Function heufunc = EUCLIDEAN;
 
     switch (heufunc)
     {
