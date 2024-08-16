@@ -193,6 +193,13 @@ void JPSPathFinder::JPSGraphSearch(Eigen::Vector3d start_pt, Eigen::Vector3d end
     *
     *
     */
+
+    if (isOccupied(end_pt->index))
+    {
+        ROS_WARN("The goal point is in the opstacle, please reset the goal point");
+        return;
+    }
+
     double tentative_gScore;
     vector<GridNodePtr> neighborPtrSets;
     vector<double> edgeCostSets;
@@ -211,6 +218,10 @@ void JPSPathFinder::JPSGraphSearch(Eigen::Vector3d start_pt, Eigen::Vector3d end
         *
         *
         */
+
+        /******************************* start *******************************/
+        currentPtr = openSet.begin()->second;
+        /******************************* end *******************************/
 
         // if the current node is the goal
         if (currentPtr->index == goalIdx)

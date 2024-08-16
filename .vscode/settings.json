@@ -11,6 +11,7 @@
     "*.yml": "yaml",
     "cmath": "cpp",
     "complex": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "variant": "cpp"
   }
 }
